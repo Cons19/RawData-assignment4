@@ -28,8 +28,8 @@ namespace Assignment4
         OrderDetails GetOrderDetailsByProductId(int productId);
 
         // order
-        Order GetOrderyById(int id);
-        Order GetOrderyByShippingName(int shippingName);
+        Order GetOrder(int id);
+        IList<Order> GetOrderyByShippingName(string shippingName);
         IList<Order> GetOrders();
     }
 
@@ -87,7 +87,7 @@ namespace Assignment4
         public Product GetProduct(int productId)
         {
             var ctx = new NorthwindContext();
-            return ctx.Products.Find(productId);
+            return ctx.Products.Where(x => x.Id == productId).Include("Category").FirstOrDefault();
         }
 
         public IList<Product> GetProductByName(string productName)
@@ -100,15 +100,7 @@ namespace Assignment4
         public IList<Product> GetProductByCategory(int categoryId)
         {
             var ctx = new NorthwindContext();
-            IList<Product> allProducts = ctx.Products.ToList();
-            /*IList<Product> products = new List<Product>();
-            foreach (var product in allProducts)
-            {
-                if (product.CategoryId == categoryId)
-                {
-                    products.Add(product);
-                }
-            }*/
+            IList<Product> allProducts = ctx.Products.Include("Category").ToList();
             return allProducts.Where(x => x.CategoryId == categoryId).ToList();
         }
 
@@ -122,19 +114,25 @@ namespace Assignment4
             throw new NotImplementedException();
         }
 
-        public Order GetOrderyById(int id)
+        public Order GetOrder(int id)
         {
-            throw new NotImplementedException();
+            var ctx = new NorthwindContext();
+            var orders = ctx.Orders.Where(x => x.Id == id).Include(x => x.OrderDetails).FirstOrDefault();
+            Console.WriteLine(orders);
+            return orders;
         }
 
-        public Order GetOrderyByShippingName(int shippingName)
-        {
-            throw new NotImplementedException();
+        public IList<Order> GetOrderyByShippingName(string shippingName)
+        { 
+            var ctx = new NorthwindContext();
+            IList<Order> allOrders = ctx.Orders.Include("OrderDetails.Product.Category").ToList();
+            return allOrders.Where(x => x.ShipName.Contains(shippingName)).ToList();
         }
 
         public IList<Order> GetOrders()
         {
-            throw new NotImplementedException();
+            var ctx = new NorthwindContext();
+            return ctx.Orders.ToList();
         }
     }
 }

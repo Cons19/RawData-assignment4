@@ -12,7 +12,7 @@ namespace Assignment4
     {
         // change these variables depending on your local machine
         private string uid = "postgres";
-        private string password = "pass123";
+        private string password = "Kea06##";
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
@@ -59,7 +59,7 @@ namespace Assignment4
             modelBuilder.Entity<Order>().ToTable("orders");
             modelBuilder.Entity<Order>().Property(x => x.Id).HasColumnName("orderid");
             modelBuilder.Entity<Order>().Property(x => x.Date).HasColumnName("orderdate");
-            modelBuilder.Entity<Order>().Property(x => x.Require).HasColumnName("requireddate");
+            modelBuilder.Entity<Order>().Property(x => x.Required).HasColumnName("requireddate");
             modelBuilder.Entity<Order>().Property(x => x.Shipped).HasColumnName("shippeddate");
             modelBuilder.Entity<Order>().Property(x => x.Freight).HasColumnName("freight");
             modelBuilder.Entity<Order>().Property(x => x.ShipName).HasColumnName("shipname");

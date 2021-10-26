@@ -140,7 +140,7 @@ namespace Assignment4.Tests
         }
 
         /* orders */
-        /*[Fact]
+        [Fact]
         public void Order_Object_HasIdDatesAndOrderDetails()
         {
             var order = new Order();
@@ -168,7 +168,7 @@ namespace Assignment4.Tests
             var service = new DataService();
             var orders = service.GetOrders();
             Assert.Equal(830, orders.Count);
-        }*/
+        }
 
 
         /* orderdetails */

@@ -10,16 +10,16 @@ namespace Assignment4.Domain
     {
         public int Id { get; set; }
         public DateTime Date { get; set; }
-        public DateTime Require { get; set; }
+        public DateTime Required { get; set; }
         public DateTime Shipped { get; set; }
         public int Freight { get; set; }
         public string ShipName { get; set; }
         public string ShipCity { get; set; }
-        public OrderDetails OrderDetails { get; set; }
+        public IList<OrderDetails> OrderDetails { get; set; }
 
         public override string ToString()
         {
-            return $"Date = {Date}, Require = {Require}, Shipped = {Shipped}, Freight = {Freight}, ShipName = {ShipName}, ShipCity = {ShipCity}, OrderDetails = {OrderDetails}";
+            return $"Date = {Date}, Require = {Required}, Shipped = {Shipped}, Freight = {Freight}, ShipName = {ShipName}, ShipCity = {ShipCity}, OrderDetails = {OrderDetails}";
         }
     }
 }
