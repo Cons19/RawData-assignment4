@@ -170,9 +170,8 @@ namespace Assignment4.Tests
             Assert.Equal(830, orders.Count);
         }
 
-
         /* orderdetails */
-        /*[Fact]
+        [Fact]
         public void OrderDetails_Object_HasOrderProductUnitPriceQuantityAndDiscount()
         {
             var orderDetails = new OrderDetails();
@@ -205,6 +204,6 @@ namespace Assignment4.Tests
             Assert.Equal("1997-05-06", orderDetails.First().Order.Date.ToString("yyyy-MM-dd"));
             Assert.Equal(21, orderDetails.First().UnitPrice);
             Assert.Equal(3, orderDetails.First().Quantity);
-        }*/
+        }
     }
 }

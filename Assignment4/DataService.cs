@@ -24,8 +24,8 @@ namespace Assignment4
         IList<Product> GetProductByCategory(int categoryId);
 
         // order details
-        OrderDetails GetOrderDetailsByOrderId(int orderId);
-        OrderDetails GetOrderDetailsByProductId(int productId);
+        IList<OrderDetails> GetOrderDetailsByOrderId(int orderId);
+        IList<OrderDetails> GetOrderDetailsByProductId(int productId);
 
         // order
         Order GetOrder(int id);
@@ -104,22 +104,23 @@ namespace Assignment4
             return allProducts.Where(x => x.CategoryId == categoryId).ToList();
         }
 
-        public OrderDetails GetOrderDetailsByOrderId(int orderId)
+        public IList<OrderDetails> GetOrderDetailsByOrderId(int orderId)
         {
-            throw new NotImplementedException();
+            var ctx = new NorthwindContext();
+            return ctx.OrderDetails.Where(x => x.OrderId == orderId).Include("Product").ToList();
         }
 
-        public OrderDetails GetOrderDetailsByProductId(int productId)
+        public IList<OrderDetails> GetOrderDetailsByProductId(int productId)
         {
-            throw new NotImplementedException();
+            var ctx = new NorthwindContext();
+            return ctx.OrderDetails.Where(x => x.ProductId == productId).Include("Order").ToList();
         }
 
         public Order GetOrder(int id)
         {
             var ctx = new NorthwindContext();
-            var orders = ctx.Orders.Where(x => x.Id == id).Include(x => x.OrderDetails).FirstOrDefault();
-            Console.WriteLine(orders);
-            return orders;
+            Order order = ctx.Orders.Where(x => x.Id == id).Include(x => x.OrderDetails).FirstOrDefault(); ;
+            return order;
         }
 
         public IList<Order> GetOrderyByShippingName(string shippingName)

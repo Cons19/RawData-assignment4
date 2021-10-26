@@ -12,7 +12,7 @@ namespace Assignment4
     {
         // change these variables depending on your local machine
         private string uid = "postgres";
-        private string password = "Kea06##";
+        private string password = "pass123";
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
@@ -31,6 +31,7 @@ namespace Assignment4
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            //modelBuilder.Entity<OrderDetails>().Ignore(x => x.OrderId);
 
             // category mapping
             modelBuilder.Entity<Category>().ToTable("categories");
@@ -49,11 +50,13 @@ namespace Assignment4
 
             // order details
             modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
-            modelBuilder.Entity<OrderDetails>().Property(x => x.Id).HasColumnName("orderid");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.OrderId).HasColumnName("orderid");
             modelBuilder.Entity<OrderDetails>().Property(x => x.ProductId).HasColumnName("productid");
-            modelBuilder.Entity<OrderDetails>().Property(x => x.Price).HasColumnName("unitprice");
+            modelBuilder.Entity<OrderDetails>().Property(x => x.UnitPrice).HasColumnName("unitprice");
             modelBuilder.Entity<OrderDetails>().Property(x => x.Quantity).HasColumnName("quantity");
             modelBuilder.Entity<OrderDetails>().Property(x => x.Discount).HasColumnName("discount");
+            modelBuilder.Entity<OrderDetails>().HasOne(x => x.Order).WithMany(x => x.OrderDetails).HasForeignKey(x => x.OrderId);
+            modelBuilder.Entity<OrderDetails>().HasOne(x => x.Product).WithMany(x => x.OrderDetails).HasForeignKey(x => x.ProductId);
 
             // order
             modelBuilder.Entity<Order>().ToTable("orders");
@@ -64,6 +67,8 @@ namespace Assignment4
             modelBuilder.Entity<Order>().Property(x => x.Freight).HasColumnName("freight");
             modelBuilder.Entity<Order>().Property(x => x.ShipName).HasColumnName("shipname");
             modelBuilder.Entity<Order>().Property(x => x.ShipCity).HasColumnName("shipcity");
+            //modelBuilder.Entity<Order>().HasMany(x => x.OrderDetails).WithOne(x => x.Order).HasForeignKey(x => x.OrderId);
+
 
         }
     }
