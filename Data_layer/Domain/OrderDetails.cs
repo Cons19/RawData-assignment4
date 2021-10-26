@@ -17,7 +17,7 @@ namespace Data_layer.Domain
 
         public override string ToString()
         {
-            return $"Date = {Product.Name}, Price = {Price}, Quantity = {Quantity}}";
+            return $"Date = {Product.Name}, Price = {Price}, Quantity = {Quantity}";
         }
     }
 }
