@@ -19,9 +19,9 @@ namespace Assignment4
         bool DeleteCategory(int id);
 
         // product
-        Product GetProductById(int productId);
-        IList<Product> SearchProduct(string searchText);
-        Product GetProductByCategoryId(int categoryId);
+        Product GetProduct(int productId);
+        IList<Product> GetProductByName(string productName);
+        IList<Product> GetProductByCategory(int categoryId);
 
         // order details
         OrderDetails GetOrderDetailsByOrderId(int orderId);
@@ -84,27 +84,32 @@ namespace Assignment4
             return false;
         }
 
-
-
-        public IList<Product> GetProducts()
+        public Product GetProduct(int productId)
         {
             var ctx = new NorthwindContext();
-            return ctx.Products.ToList();
+            return ctx.Products.Find(productId);
         }
 
-        public Product GetProductById(int productId)
+        public IList<Product> GetProductByName(string productName)
         {
-            throw new NotImplementedException();
+            var ctx = new NorthwindContext();
+            IList<Product> allProducts = ctx.Products.ToList();
+            return allProducts.Where(x => x.Name.Contains(productName)).ToList();
         }
 
-        public IList<Product> SearchProduct(string searchText)
+        public IList<Product> GetProductByCategory(int categoryId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Product GetProductByCategoryId(int categoryId)
-        {
-            throw new NotImplementedException();
+            var ctx = new NorthwindContext();
+            IList<Product> allProducts = ctx.Products.ToList();
+            /*IList<Product> products = new List<Product>();
+            foreach (var product in allProducts)
+            {
+                if (product.CategoryId == categoryId)
+                {
+                    products.Add(product);
+                }
+            }*/
+            return allProducts.Where(x => x.CategoryId == categoryId).ToList();
         }
 
         public OrderDetails GetOrderDetailsByOrderId(int orderId)

@@ -43,9 +43,9 @@ namespace Assignment4
             modelBuilder.Entity<Product>().Property(x => x.Id).HasColumnName("productid");
             modelBuilder.Entity<Product>().Property(x => x.Name).HasColumnName("productname");
             modelBuilder.Entity<Product>().Property(x => x.CategoryId).HasColumnName("categoryid");
-            modelBuilder.Entity<Product>().Property(x => x.Quantity).HasColumnName("quantityperunit");
-            modelBuilder.Entity<Product>().Property(x => x.Price).HasColumnName("unitprice");
-            modelBuilder.Entity<Product>().Property(x => x.Stock).HasColumnName("unitsinstock");
+            modelBuilder.Entity<Product>().Property(x => x.QuantityPerUnit).HasColumnName("quantityperunit");
+            modelBuilder.Entity<Product>().Property(x => x.UnitPrice).HasColumnName("unitprice");
+            modelBuilder.Entity<Product>().Property(x => x.UnitsInStock).HasColumnName("unitsinstock");
 
             // order details
             modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");

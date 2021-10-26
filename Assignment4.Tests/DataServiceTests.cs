@@ -96,7 +96,7 @@ namespace Assignment4.Tests
 
         /* products */
 
-        /*[Fact]
+        [Fact]
         public void Product_Object_HasIdNameUnitPriceQuantityPerUnitAndUnitsInStock()
         {
             var product = new Product();
@@ -123,7 +123,8 @@ namespace Assignment4.Tests
             var products = service.GetProductByCategory(1);
             Assert.Equal(12, products.Count);
             Assert.Equal("Chai", products.First().Name);
-            Assert.Equal("Beverages", products.First().CategoryName);
+            // changed CategoryName to Category.Name
+            Assert.Equal("Beverages", products.First().Category.Name);
             Assert.Equal("Lakkalikööri", products.Last().Name);
         }
 
@@ -133,9 +134,10 @@ namespace Assignment4.Tests
             var service = new DataService();
             var products = service.GetProductByName("em");
             Assert.Equal(4, products.Count);
-            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().ProductName);
-            Assert.Equal("Flotemysost", products.Last().ProductName);
-        }*/
+            // changed from ProductName to Name
+            Assert.Equal("NuNuCa Nuß-Nougat-Creme", products.First().Name);
+            Assert.Equal("Flotemysost", products.Last().Name);
+        }
 
         /* orders */
         /*[Fact]
