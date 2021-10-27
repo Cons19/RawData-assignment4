@@ -26,7 +26,6 @@ namespace Assignment4
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<OrderDetails>().Ignore(x => x.OrderId);
 
             // category mapping
             modelBuilder.Entity<Category>().ToTable("categories");
