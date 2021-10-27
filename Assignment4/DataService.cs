@@ -119,7 +119,8 @@ namespace Assignment4
         public Order GetOrder(int id)
         {
             var ctx = new NorthwindContext();
-            Order order = ctx.Orders.Where(x => x.Id == id).Include(x => x.OrderDetails).FirstOrDefault(); ;
+            Order order = ctx.Orders.Where(x => x.Id == id).FirstOrDefault();
+            order.OrderDetails = ctx.OrderDetails.Where(x => x.OrderId == id).Include("Product.Category").ToList();
             return order;
         }
 

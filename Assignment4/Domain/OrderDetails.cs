@@ -21,7 +21,7 @@ namespace Assignment4.Domain
 
         public override string ToString()
         {
-            return $"Date = {Product.Name}, Price = {UnitPrice}, Quantity = {Quantity}";
+            return $"Product = {Product.Name}, ProductCategory = {Product.Category.Name}, Price = {UnitPrice}, Quantity = {Quantity}";
         }
     }
 }

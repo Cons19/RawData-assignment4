@@ -11,8 +11,8 @@ namespace Assignment4
     public class NorthwindContext : DbContext
     {
         // change these variables depending on your local machine
-        private string uid = "postgres";
-        private string password = "pass123";
+        private string uid = "";
+        private string password = "";
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
@@ -47,6 +47,7 @@ namespace Assignment4
             modelBuilder.Entity<Product>().Property(x => x.QuantityPerUnit).HasColumnName("quantityperunit");
             modelBuilder.Entity<Product>().Property(x => x.UnitPrice).HasColumnName("unitprice");
             modelBuilder.Entity<Product>().Property(x => x.UnitsInStock).HasColumnName("unitsinstock");
+            modelBuilder.Entity<Product>().HasOne(x => x.Category).WithMany(x => x.Product).HasForeignKey(x => x.CategoryId);
 
             // order details
             modelBuilder.Entity<OrderDetails>().ToTable("orderdetails");
@@ -67,9 +68,6 @@ namespace Assignment4
             modelBuilder.Entity<Order>().Property(x => x.Freight).HasColumnName("freight");
             modelBuilder.Entity<Order>().Property(x => x.ShipName).HasColumnName("shipname");
             modelBuilder.Entity<Order>().Property(x => x.ShipCity).HasColumnName("shipcity");
-            //modelBuilder.Entity<Order>().HasMany(x => x.OrderDetails).WithOne(x => x.Order).HasForeignKey(x => x.OrderId);
-
-
         }
     }
 }
