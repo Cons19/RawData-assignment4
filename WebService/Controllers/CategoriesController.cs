@@ -27,7 +27,6 @@ namespace Assignment4
             return Ok(categories.Select(x => GetCategoryViewModel(x)));
         }
 
-        // api/categories/id
         [HttpGet("{id}", Name = nameof(GetCategory))]
         public IActionResult GetCategory(int id)
         {

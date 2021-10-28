@@ -1,5 +1,4 @@
-﻿using Assignment4;
-using WebService.ViewModels;
+﻿using Assignment4.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using System.Collections.Generic;
@@ -53,25 +52,26 @@ namespace Assignment4
 
             return Ok(productByCategoryViewModelList);
         }
-        /*
+        
         [HttpGet("name/{substring}")]
         public IActionResult GetProductBySubstring(string substring)
         {
             var products = _dataService.GetProductByName(substring);
 
+            IList<ProductBySubstringViewModel> productBySubstringViewModelList = new List<ProductBySubstringViewModel>();
+
             if (products.Count == 0)
             {
                 return NotFound(products);
             }
-            
+
             foreach (Product p in products)
             {
-                p.Category = _dataService.GetCategory(id);
-                productViewModelList.Add(GetProductViewModel(p, p.Category.Name));
+                productBySubstringViewModelList.Add(GetProductBySubstringViewModel(p));
             }
 
-            //return Ok(productViewModelList);
-        }*/
+            return Ok(productBySubstringViewModelList);
+        }
 
         private ProductByCategoryViewModel GetProductByCategoryViewModel(Product product, string categoryName)
         {
@@ -86,7 +86,7 @@ namespace Assignment4
             };
         }
 
-        private ProductBySubstringViewModel GetProductBySubstringViewModel(Product product, string categoryName)
+        private ProductBySubstringViewModel GetProductBySubstringViewModel(Product product)
         {
             return new ProductBySubstringViewModel
             {
@@ -94,7 +94,6 @@ namespace Assignment4
                 UnitPrice = product.UnitPrice,
                 QuantityPerUnit = product.QuantityPerUnit,
                 UnitsInStock = product.UnitsInStock,
-                CategoryName = categoryName,
                 CategoryId = product.CategoryId
             };
         }

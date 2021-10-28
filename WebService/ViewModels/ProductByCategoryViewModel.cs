@@ -1,7 +1,4 @@
-﻿using Assignment4.Domain;
-using System.Collections.Generic;
-
-namespace WebService.ViewModels
+﻿namespace Assignment4
 {
     public class ProductByCategoryViewModel
     {
