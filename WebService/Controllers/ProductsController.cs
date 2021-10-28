@@ -4,7 +4,9 @@ using Assignment4.Domain;
 
 namespace Assignment4
 {
-    public class ProductsController
+    [ApiController]
+    [Route("api/products")]
+    public class ProductsController : Controller
     {
         IDataService _dataService;
         LinkGenerator _linkGenerator;
