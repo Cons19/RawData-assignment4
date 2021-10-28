@@ -134,7 +134,7 @@ namespace Assignment4.Tests
 
         /* /api/products */
 
-        /*[Fact]
+        [Fact]
         public void ApiProducts_ValidId_CompleteProduct()
         {
             var (product, statusCode) = GetObject($"{ProductsApi}/1");
@@ -191,7 +191,7 @@ namespace Assignment4.Tests
 
             Assert.Equal(HttpStatusCode.NotFound, statusCode);
             Assert.Equal(0, products.Count);
-        }*/
+        }
 
 
 

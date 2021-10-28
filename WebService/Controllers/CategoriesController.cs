@@ -97,7 +97,6 @@ namespace Assignment4
         {
             return new CategoryViewModel
             {
-
                 Url = _linkGenerator.GetUriByName(HttpContext, nameof(GetCategory), new { category.Id }),
                 Name = category.Name,
                 Desc = category.Description
